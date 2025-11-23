@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.gifttrack.feature.orders.ui.AddOrderScreen
+import com.gifttrack.feature.orders.ui.EditOrderScreen
 import com.gifttrack.feature.orders.ui.OrderDetailsScreen
 import com.gifttrack.feature.orders.ui.OrdersScreen
 import com.gifttrack.feature.recipients.ui.RecipientsScreen
@@ -60,8 +61,28 @@ fun GiftTrackNavHost(
                     type = NavType.StringType
                 }
             )
-        ) {
+        ) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId") ?: return@composable
             OrderDetailsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToEdit = {
+                    navController.navigate(Screen.EditOrder.createRoute(orderId))
+                }
+            )
+        }
+
+        // Edit Order Screen
+        composable(
+            route = Screen.EditOrder.route,
+            arguments = listOf(
+                navArgument("orderId") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            EditOrderScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }

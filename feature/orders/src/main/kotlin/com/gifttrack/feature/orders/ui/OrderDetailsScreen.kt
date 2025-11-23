@@ -11,11 +11,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,6 +45,7 @@ import java.util.Locale
  * Screen for displaying detailed information about an order.
  *
  * @param onNavigateBack Callback when user navigates back.
+ * @param onNavigateToEdit Callback when user wants to edit the order.
  * @param modifier Modifier for the screen.
  * @param viewModel ViewModel for managing order details state.
  */
@@ -50,6 +53,7 @@ import java.util.Locale
 @Composable
 fun OrderDetailsScreen(
     onNavigateBack: () -> Unit,
+    onNavigateToEdit: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: OrderDetailsViewModel = hiltViewModel()
 ) {
@@ -68,6 +72,19 @@ fun OrderDetailsScreen(
                     }
                 }
             )
+        },
+        floatingActionButton = {
+            if (uiState is OrderDetailsUiState.Success) {
+                FloatingActionButton(
+                    onClick = onNavigateToEdit,
+                    containerColor = MaterialTheme.colorScheme.primary
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Bestellung bearbeiten"
+                    )
+                }
+            }
         }
     ) { padding ->
         Box(

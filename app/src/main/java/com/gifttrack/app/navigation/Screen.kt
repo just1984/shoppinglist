@@ -42,6 +42,16 @@ sealed class Screen(val route: String) {
         fun createRoute(orderId: String) = "order_details/$orderId"
     }
 
+    /**
+     * Edit Order screen - form for editing an existing order.
+     */
+    object EditOrder : Screen("edit_order/{orderId}") {
+        /**
+         * Creates a route for navigating to edit order with the given order ID.
+         */
+        fun createRoute(orderId: String) = "edit_order/$orderId"
+    }
+
     companion object {
         /**
          * All main navigation destinations.
