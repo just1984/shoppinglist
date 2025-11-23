@@ -36,33 +36,44 @@ class OrdersViewModel @Inject constructor(
     private val _sort = MutableStateFlow(OrderSort())
     val sort: StateFlow<OrderSort> = _sort.asStateFlow()
 
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
+
     init {
         loadOrders()
     }
 
     /**
-     * Loads orders from the repository with filter and sort applied.
+     * Loads orders from the repository with search, filter, and sort applied.
      */
     private fun loadOrders() {
         viewModelScope.launch {
             combine(
                 orderRepository.getOrders(),
+                _searchQuery,
                 _filter,
                 _sort
-            ) { orders, filter, sort ->
-                Triple(orders, filter, sort)
+            ) { orders, searchQuery, filter, sort ->
+                listOf(orders, searchQuery, filter, sort)
             }
                 .catch { exception ->
                     _uiState.value = OrdersUiState.Error(
                         message = exception.message ?: "Ein unbekannter Fehler ist aufgetreten"
                     )
                 }
-                .collect { (orders, filter, sort) ->
-                    val filteredOrders = applyFilter(orders, filter)
+                .collect { data ->
+                    @Suppress("UNCHECKED_CAST")
+                    val orders = data[0] as List<Order>
+                    val searchQuery = data[1] as String
+                    val filter = data[2] as OrderFilter
+                    val sort = data[3] as OrderSort
+
+                    val searchedOrders = applySearch(orders, searchQuery)
+                    val filteredOrders = applyFilter(searchedOrders, filter)
                     val sortedOrders = applySort(filteredOrders, sort)
 
                     _uiState.value = if (sortedOrders.isEmpty()) {
-                        if (filter.isActive()) {
+                        if (filter.isActive() || searchQuery.isNotBlank()) {
                             OrdersUiState.Success(emptyList())
                         } else {
                             OrdersUiState.Empty
@@ -71,6 +82,26 @@ class OrdersViewModel @Inject constructor(
                         OrdersUiState.Success(sortedOrders)
                     }
                 }
+        }
+    }
+
+    /**
+     * Applies search query to orders list.
+     * Searches across order number, shop name, product name, and description.
+     */
+    private fun applySearch(orders: List<Order>, query: String): List<Order> {
+        if (query.isBlank()) {
+            return orders
+        }
+
+        val searchQuery = query.trim().lowercase()
+        return orders.filter { order ->
+            order.orderNumber.lowercase().contains(searchQuery) ||
+                    order.shopName.lowercase().contains(searchQuery) ||
+                    order.productName?.lowercase()?.contains(searchQuery) == true ||
+                    order.productDescription?.lowercase()?.contains(searchQuery) == true ||
+                    order.trackingNumber?.lowercase()?.contains(searchQuery) == true ||
+                    order.carrierName?.lowercase()?.contains(searchQuery) == true
         }
     }
 
@@ -150,6 +181,20 @@ class OrdersViewModel @Inject constructor(
      */
     fun updateSort(sort: OrderSort) {
         _sort.value = sort
+    }
+
+    /**
+     * Updates the search query.
+     */
+    fun updateSearchQuery(query: String) {
+        _searchQuery.value = query
+    }
+
+    /**
+     * Clears the search query.
+     */
+    fun clearSearch() {
+        _searchQuery.value = ""
     }
 
     /**

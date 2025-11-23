@@ -11,7 +11,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -24,6 +26,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -67,9 +72,11 @@ fun OrdersScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val filter by viewModel.filter.collectAsStateWithLifecycle()
     val sort by viewModel.sort.collectAsStateWithLifecycle()
+    val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
 
     var showFilterDialog by remember { mutableStateOf(false) }
     var showSortDialog by remember { mutableStateOf(false) }
+    var isSearchActive by remember { mutableStateOf(false) }
 
     if (showFilterDialog) {
         FilterDialog(
@@ -90,34 +97,75 @@ fun OrdersScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TopAppBar(
-                title = { Text("Bestellungen") },
-                actions = {
-                    // Sort button
-                    IconButton(onClick = { showSortDialog = true }) {
-                        Icon(
-                            imageVector = Icons.Default.Sort,
-                            contentDescription = "Sortieren"
+            if (isSearchActive) {
+                // Search mode TopAppBar
+                TopAppBar(
+                    title = {
+                        TextField(
+                            value = searchQuery,
+                            onValueChange = viewModel::updateSearchQuery,
+                            placeholder = { Text("Bestellungen durchsuchen...") },
+                            singleLine = true,
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
+                            ),
+                            modifier = Modifier.fillMaxWidth()
                         )
-                    }
-
-                    // Filter button with badge
-                    IconButton(onClick = { showFilterDialog = true }) {
-                        BadgedBox(
-                            badge = {
-                                if (filter.isActive()) {
-                                    Badge()
-                                }
-                            }
-                        ) {
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            isSearchActive = false
+                            viewModel.clearSearch()
+                        }) {
                             Icon(
-                                imageVector = Icons.Default.FilterList,
-                                contentDescription = "Filtern"
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Suche schließen"
                             )
                         }
                     }
-                }
-            )
+                )
+            } else {
+                // Normal mode TopAppBar
+                TopAppBar(
+                    title = { Text("Bestellungen") },
+                    actions = {
+                        // Search button
+                        IconButton(onClick = { isSearchActive = true }) {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "Suchen"
+                            )
+                        }
+
+                        // Sort button
+                        IconButton(onClick = { showSortDialog = true }) {
+                            Icon(
+                                imageVector = Icons.Default.Sort,
+                                contentDescription = "Sortieren"
+                            )
+                        }
+
+                        // Filter button with badge
+                        IconButton(onClick = { showFilterDialog = true }) {
+                            BadgedBox(
+                                badge = {
+                                    if (filter.isActive()) {
+                                        Badge()
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.FilterList,
+                                    contentDescription = "Filtern"
+                                )
+                            }
+                        }
+                    }
+                )
+            }
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -149,7 +197,7 @@ fun OrdersScreen(
                     SuccessState(
                         orders = state.orders,
                         onOrderClick = onNavigateToOrderDetails,
-                        hasActiveFilter = filter.isActive()
+                        hasActiveFilter = filter.isActive() || searchQuery.isNotBlank()
                     )
                 }
 
@@ -223,7 +271,7 @@ private fun SuccessState(
     hasActiveFilter: Boolean
 ) {
     if (orders.isEmpty() && hasActiveFilter) {
-        // Show empty filter result
+        // Show empty search/filter result
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -244,7 +292,7 @@ private fun SuccessState(
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "Mit den aktuellen Filtern wurden keine Bestellungen gefunden.",
+                    text = "Keine Bestellungen gefunden, die den Suchkriterien entsprechen.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center
