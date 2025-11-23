@@ -60,10 +60,10 @@ Automatisches Tracking des Sendestatus mit Push-Benachrichtigungen bei Statusän
 
 ## Technische Rahmenbedingungen
 
-- Mobile App: Native Entwicklung mit Swift (iOS) – optionale spätere Android-Version
+- Mobile App: Native Android-Entwicklung mit Kotlin und Jetpack Compose – optionale spätere iOS-Version
 - Backend: Supabase für Authentifizierung, Datenmanagement und Synchronisation
 - Datenschutz- und Sicherheitsstandards nach europäischem Recht
-- Offline-Verfügbarkeit der wichtigsten Funktionen
+- Offline-Verfügbarkeit der wichtigsten Funktionen (Offline-First mit Room Database)
 
 
 ## KPIs für Erfolgsmessung
