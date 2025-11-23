@@ -2,7 +2,7 @@
 
 **Project**: GiftTrack Android App
 **Last Updated**: 2025-11-23
-**Status**: Development Phase - Sprint 2
+**Status**: Development Phase - Sprint 3 Complete
 
 ---
 
@@ -12,11 +12,11 @@
 |-------|--------|----------|
 | **Planning** | ✅ Completed | 100% |
 | **Setup & Infrastructure** | ✅ Completed | 100% |
-| **MVP Development** | 🔄 In Progress | 15% |
+| **MVP Development** | 🔄 In Progress | 67% |
 | **Testing & QA** | ⏸️ Not Started | 0% |
 | **Release** | ⏸️ Not Started | 0% |
 
-**Overall Project Completion**: 20% (Setup + Database + Full CRUD for Orders complete)
+**Overall Project Completion**: 19% (E01 + E02 fully complete: 60/324 Story Points)
 
 ---
 
@@ -56,7 +56,27 @@
 
 **Completed Stories**: US-010, US-011, US-012
 
-### Current Sprint: Sprint 3 (TBD)
+### Sprint 3: Order CRUD Operations ✅ COMPLETED
+**Sprint Goal**: Complete order management features
+**Start Date**: 2025-11-23
+**End Date**: 2025-11-23
+**Status**: ✅ Completed
+**Velocity**: 21 Story Points
+
+**Sprint Summary**:
+- ✅ Manual Order Creation (US-013)
+- ✅ Order Details Display (US-014)
+- ✅ Order Editing (US-015)
+- ✅ Order Deletion (US-016)
+- ✅ Product Image Upload (US-017)
+- ✅ Shop Management (US-018)
+- ✅ Filter & Sort Options (US-019)
+- ✅ Search Functionality (US-020)
+- ✅ Order Status Management (US-021)
+
+**Completed Stories**: US-013, US-014, US-015, US-016, US-017, US-018, US-019, US-020, US-021
+
+### Current Sprint: Sprint 4 (TBD)
 **Sprint Goal**: TBD
 **Planned Start**: TBD
 **Status**: ⏸️ Not Started
@@ -82,7 +102,7 @@
 ---
 
 ### E02: Bestellverwaltung
-**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 6/12 Stories
+**Priority**: High | **Status**: ✅ Completed | **Progress**: 12/12 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
@@ -93,13 +113,13 @@
 | US-014 | Bestellungsdetails anzeigen | ✅ Completed | High | 3 |
 | US-015 | Bestellung bearbeiten | ✅ Completed | Medium | 3 |
 | US-016 | Bestellung löschen | ✅ Completed | Medium | 2 |
-| US-017 | Produktbilder hochladen und speichern | ⏸️ Not Started | Medium | 3 |
-| US-018 | Shop-Verwaltung implementieren | ⏸️ Not Started | Medium | 3 |
-| US-019 | Filter- und Sortieroptionen | ⏸️ Not Started | Medium | 3 |
-| US-020 | Suchfunktion implementieren | ⏸️ Not Started | Low | 2 |
-| US-021 | Bestellstatus verwalten | ⏸️ Not Started | Medium | 2 |
+| US-017 | Produktbilder hochladen und speichern | ✅ Completed | Medium | 3 |
+| US-018 | Shop-Verwaltung implementieren | ✅ Completed | Medium | 3 |
+| US-019 | Filter- und Sortieroptionen | ✅ Completed | Medium | 3 |
+| US-020 | Suchfunktion implementieren | ✅ Completed | Low | 2 |
+| US-021 | Bestellstatus verwalten | ✅ Completed | Medium | 2 |
 
-**Story Points**: 26/39 completed (67%)
+**Story Points**: 39/39 completed (100%)
 
 ---
 
@@ -227,13 +247,13 @@ Detaillierte Stories werden nach MVP erstellt.
 | Epic | Total Points | Completed | Remaining | % Complete |
 |------|--------------|-----------|-----------|------------|
 | E01 | 21 | 21 | 0 | 100% ✅ |
-| E02 | 39 | 26 | 13 | 67% 🔄 |
+| E02 | 39 | 39 | 0 | 100% ✅ |
 | E03 | 30 | 0 | 30 | 0% |
 | E04 | 52 | 0 | 52 | 0% |
 | E05 | 50 | 0 | 50 | 0% |
 | E06 | 62 | 0 | 62 | 0% |
 | E07 | ~70 | 0 | ~70 | 0% |
-| **Total** | **~324** | **47** | **~277** | **15%** |
+| **Total** | **~324** | **60** | **~264** | **19%** |
 
 ### Velocity Tracking
 
@@ -242,8 +262,9 @@ Detaillierte Stories werden nach MVP erstellt.
 | Planning | - | - | - |
 | Sprint 1 | 21 | 21 | 21 ✅ |
 | Sprint 2 | 13 | 13 | 13 ✅ |
+| Sprint 3 | 21 | 21 | 21 ✅ |
 
-**Average Velocity**: 17 Story Points/Sprint (based on Sprint 1 & 2)
+**Average Velocity**: 18 Story Points/Sprint (based on Sprint 1, 2 & 3)
 
 ---
 
@@ -252,11 +273,11 @@ Detaillierte Stories werden nach MVP erstellt.
 ### Milestone 1: MVP Foundation (E01 + E02 + E03)
 **Target Date**: TBD
 **Status**: 🔄 In Progress
-**Progress**: 52% (47/90 Story Points)
+**Progress**: 67% (60/90 Story Points)
 
 **Included Stories**:
 - ✅ All E01 stories (Project Setup) - DONE
-- 🔄 All E02 stories (Order Management) - IN PROGRESS
+- ✅ All E02 stories (Order Management) - DONE
 - ⏸️ All E03 stories (Recipient Management) - PENDING
 
 **Success Criteria**:
@@ -385,7 +406,7 @@ Detaillierte Stories werden nach MVP erstellt.
 Planning Phase          ███████████████████ 100% ✅ DONE
 Sprint 1 (Setup)        ███████████████████ 100% ✅ DONE
 Sprint 2 (Database+UI)  ███████████████████ 100% ✅ DONE
-Sprint 3 (Orders CRUD)  ░░░░░░░░░░░░░░░░░░░   0%
+Sprint 3 (Orders CRUD)  ███████████████████ 100% ✅ DONE
 Sprint 4 (Recipients)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 5-6 (Tracking)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 7 (Auth)         ░░░░░░░░░░░░░░░░░░░   0%
