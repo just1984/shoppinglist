@@ -98,20 +98,21 @@ Siehe [ARCHITECTURE.md](ARCHITECTURE.md) für Details zur Clean Architecture.
 - **[Hilt Dependency Injection](docs/HILT_DI.md)** - DI Setup & Best Practices
 - **[Navigation](docs/NAVIGATION.md)** - Compose Navigation Setup
 - **[CI/CD Pipeline](docs/CI_CD.md)** - GitHub Actions & Deployment
+- **[Code Quality](docs/CODE_QUALITY.md)** - ktlint & detekt Configuration
 - [Development Progress](claude/PROGRESS.md)
 - [Epics & User Stories](claude/README.md)
 
 ## 🎯 Entwicklungsstatus
 
 **Current Sprint**: Setup Phase (Sprint 1)
-**Status**: US-005 ✅ Abgeschlossen
+**Status**: Sprint 1 ✅ Abgeschlossen
 
 - [x] US-001: Android-Projekt erstellen
 - [x] US-002: Clean Architecture Module
 - [x] US-003: Hilt Setup
 - [x] US-004: Navigation Setup
 - [x] US-005: CI/CD Pipeline
-- [ ] US-006: Code Quality Tools
+- [x] US-006: Code Quality Tools
 
 ## 🧪 Testing
 
@@ -130,16 +131,22 @@ Siehe [ARCHITECTURE.md](ARCHITECTURE.md) für Details zur Clean Architecture.
 
 Das Projekt verwendet:
 - **ktlint** für Kotlin Code-Formatierung
-- **Detekt** für statische Code-Analyse
+- **detekt** für statische Code-Analyse
 - **Android Lint** für Android-spezifische Checks
 
 ```bash
-# Code formatieren
-./gradlew ktlintFormat
+# Code formatieren (alle Module)
+./gradlew ktlintFormatAll
 
-# Code-Analyse
-./gradlew detekt
+# Code-Qualität prüfen (ktlint + detekt)
+./gradlew codeQualityCheck
+
+# Einzeln ausführen
+./gradlew ktlintCheckAll  # Nur ktlint Check
+./gradlew detektAll       # Nur detekt
 ```
+
+Siehe [Code Quality Documentation](docs/CODE_QUALITY.md) für Details.
 
 ## 🤝 Contributing
 

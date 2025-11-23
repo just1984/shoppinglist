@@ -43,6 +43,10 @@ mockk = "1.13.9"
 turbine = "1.0.0"
 truth = "1.4.0"
 
+# Code Quality
+ktlint = "12.1.0"
+detekt = "1.23.4"
+
 # Other
 javaxInject = "1"
 
@@ -118,3 +122,5 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
