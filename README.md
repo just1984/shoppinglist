@@ -89,17 +89,18 @@ Siehe [ARCHITECTURE.md](ARCHITECTURE.md) für Details zur Clean Architecture.
 - [Product Requirements Document (PRD)](docs/PRD.md)
 - [Tech Stack](docs/TECHSTACK.md)
 - **[Architecture Documentation](ARCHITECTURE.md)** - Clean Architecture & Module Structure
+- **[Hilt Dependency Injection](docs/HILT_DI.md)** - DI Setup & Best Practices
 - [Development Progress](claude/PROGRESS.md)
 - [Epics & User Stories](claude/README.md)
 
 ## 🎯 Entwicklungsstatus
 
 **Current Sprint**: Setup Phase (Sprint 1)
-**Status**: US-002 ✅ Abgeschlossen
+**Status**: US-003 ✅ Abgeschlossen
 
 - [x] US-001: Android-Projekt erstellen
 - [x] US-002: Clean Architecture Module
-- [ ] US-003: Hilt Setup
+- [x] US-003: Hilt Setup
 - [ ] US-004: Navigation Setup
 - [ ] US-005: CI/CD Pipeline
 - [ ] US-006: Code Quality Tools

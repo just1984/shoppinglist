@@ -39,7 +39,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GiftTrackApp(modifier: Modifier = Modifier) {
+fun GiftTrackApp(
+    modifier: Modifier = Modifier,
+    viewModel: com.gifttrack.app.ui.main.MainViewModel = androidx.hilt.navigation.compose.hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
     Surface(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -68,6 +73,25 @@ fun GiftTrackApp(modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(top = 16.dp)
+            )
+
+            // Display Hilt DI status
+            Text(
+                text = when (uiState) {
+                    is com.gifttrack.app.ui.main.MainUiState.Loading -> "✅ Hilt DI: Lädt..."
+                    is com.gifttrack.app.ui.main.MainUiState.Empty -> "✅ Hilt DI: Erfolgreich! (Keine Daten)"
+                    is com.gifttrack.app.ui.main.MainUiState.Success -> {
+                        val orders = (uiState as com.gifttrack.app.ui.main.MainUiState.Success).orders
+                        "✅ Hilt DI: Erfolgreich! (${orders.size} Orders)"
+                    }
+                    is com.gifttrack.app.ui.main.MainUiState.Error -> {
+                        val error = (uiState as com.gifttrack.app.ui.main.MainUiState.Error).message
+                        "❌ Fehler: $error"
+                    }
+                },
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.padding(top = 24.dp)
             )
         }
     }
