@@ -50,43 +50,55 @@ cd shoppinglist
 ## 📁 Projektstruktur
 
 ```
-app/
-├── src/
-│   ├── main/
+GiftTrack/
+├── app/                          # Main Application Module
+│   ├── src/main/
 │   │   ├── java/com/gifttrack/app/
 │   │   │   ├── ui/theme/         # Compose Theme
 │   │   │   ├── MainActivity.kt
 │   │   │   └── GiftTrackApplication.kt
 │   │   ├── res/                  # Android Ressourcen
 │   │   └── AndroidManifest.xml
-│   └── test/                     # Unit Tests
-├── build.gradle.kts
-└── proguard-rules.pro
-
-claude/                            # Projektplanung
-├── epics/                        # Epic-Dokumente
-├── stories/                      # User Stories
-└── PROGRESS.md                   # Progress Tracking
-
-docs/
-├── PRD.md                        # Product Requirements Document
-└── TECHSTACK.md                  # Tech Stack Dokumentation
+│   └── build.gradle.kts
+├── core/                         # Core Modules
+│   ├── common/                   # Common utilities (Android)
+│   ├── domain/                   # Business logic (Pure Kotlin)
+│   ├── data/                     # Repository implementations
+│   ├── database/                 # Room database
+│   ├── network/                  # Retrofit API clients
+│   └── ui/                       # Shared UI components
+├── feature/                      # Feature Modules
+│   ├── orders/                   # Order management
+│   ├── recipients/               # Recipient management
+│   ├── tracking/                 # Package tracking
+│   └── settings/                 # App settings
+├── claude/                       # Projektplanung
+│   ├── epics/                    # Epic-Dokumente
+│   ├── stories/                  # User Stories
+│   └── PROGRESS.md               # Progress Tracking
+├── docs/
+│   ├── PRD.md                    # Product Requirements Document
+│   └── TECHSTACK.md              # Tech Stack Dokumentation
+└── ARCHITECTURE.md               # Architecture Documentation
 ```
+
+Siehe [ARCHITECTURE.md](ARCHITECTURE.md) für Details zur Clean Architecture.
 
 ## 📖 Dokumentation
 
 - [Product Requirements Document (PRD)](docs/PRD.md)
 - [Tech Stack](docs/TECHSTACK.md)
+- **[Architecture Documentation](ARCHITECTURE.md)** - Clean Architecture & Module Structure
 - [Development Progress](claude/PROGRESS.md)
 - [Epics & User Stories](claude/README.md)
 
 ## 🎯 Entwicklungsstatus
 
 **Current Sprint**: Setup Phase (Sprint 1)
-**Status**: US-001 ✅ Abgeschlossen
+**Status**: US-002 ✅ Abgeschlossen
 
 - [x] US-001: Android-Projekt erstellen
-- [ ] US-002: Clean Architecture Module
+- [x] US-002: Clean Architecture Module
 - [ ] US-003: Hilt Setup
 - [ ] US-004: Navigation Setup
 - [ ] US-005: CI/CD Pipeline
