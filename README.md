@@ -1,5 +1,11 @@
 # 🎁 GiftTrack
 
+[![CI](https://github.com/just1984/shoppinglist/actions/workflows/ci.yml/badge.svg)](https://github.com/just1984/shoppinglist/actions/workflows/ci.yml)
+[![PR Check](https://github.com/just1984/shoppinglist/actions/workflows/pr-check.yml/badge.svg)](https://github.com/just1984/shoppinglist/actions/workflows/pr-check.yml)
+[![License](https://img.shields.io/badge/license-TBD-blue.svg)](LICENSE)
+[![Android](https://img.shields.io/badge/Android-8.0%2B-green.svg)](https://developer.android.com)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-purple.svg)](https://kotlinlang.org)
+
 **Geschenkplanung & Einkaufsübersicht für Android**
 
 Eine native Android-App zur zentralen Verwaltung von Online-Einkäufen aus verschiedenen Shops mit Fokus auf Geschenkplanung durch Empfängerzuordnung.
@@ -91,19 +97,20 @@ Siehe [ARCHITECTURE.md](ARCHITECTURE.md) für Details zur Clean Architecture.
 - **[Architecture Documentation](ARCHITECTURE.md)** - Clean Architecture & Module Structure
 - **[Hilt Dependency Injection](docs/HILT_DI.md)** - DI Setup & Best Practices
 - **[Navigation](docs/NAVIGATION.md)** - Compose Navigation Setup
+- **[CI/CD Pipeline](docs/CI_CD.md)** - GitHub Actions & Deployment
 - [Development Progress](claude/PROGRESS.md)
 - [Epics & User Stories](claude/README.md)
 
 ## 🎯 Entwicklungsstatus
 
 **Current Sprint**: Setup Phase (Sprint 1)
-**Status**: US-004 ✅ Abgeschlossen
+**Status**: US-005 ✅ Abgeschlossen
 
 - [x] US-001: Android-Projekt erstellen
 - [x] US-002: Clean Architecture Module
 - [x] US-003: Hilt Setup
 - [x] US-004: Navigation Setup
-- [ ] US-005: CI/CD Pipeline
+- [x] US-005: CI/CD Pipeline
 - [ ] US-006: Code Quality Tools
 
 ## 🧪 Testing
