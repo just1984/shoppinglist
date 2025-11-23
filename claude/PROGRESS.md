@@ -16,7 +16,7 @@
 | **Testing & QA** | ⏸️ Not Started | 0% |
 | **Release** | ⏸️ Not Started | 0% |
 
-**Overall Project Completion**: 17% (Setup + Database + Basic UI + Add Order complete)
+**Overall Project Completion**: 18% (Setup + Database + Basic UI + Add/View Orders complete)
 
 ---
 
@@ -82,7 +82,7 @@
 ---
 
 ### E02: Bestellverwaltung
-**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 4/12 Stories
+**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 5/12 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
@@ -90,7 +90,7 @@
 | US-011 | Repository Pattern für Bestellungen implementieren | ✅ Completed | High | 3 |
 | US-012 | Bestellungsübersicht UI erstellen | ✅ Completed | High | 5 |
 | US-013 | Bestellung manuell hinzufügen | ✅ Completed | High | 5 |
-| US-014 | Bestellungsdetails anzeigen | ⏸️ Not Started | High | 3 |
+| US-014 | Bestellungsdetails anzeigen | ✅ Completed | High | 3 |
 | US-015 | Bestellung bearbeiten | ⏸️ Not Started | Medium | 3 |
 | US-016 | Bestellung löschen | ⏸️ Not Started | Medium | 2 |
 | US-017 | Produktbilder hochladen und speichern | ⏸️ Not Started | Medium | 3 |
@@ -99,7 +99,7 @@
 | US-020 | Suchfunktion implementieren | ⏸️ Not Started | Low | 2 |
 | US-021 | Bestellstatus verwalten | ⏸️ Not Started | Medium | 2 |
 
-**Story Points**: 18/39 completed (46%)
+**Story Points**: 21/39 completed (54%)
 
 ---
 
@@ -227,13 +227,13 @@ Detaillierte Stories werden nach MVP erstellt.
 | Epic | Total Points | Completed | Remaining | % Complete |
 |------|--------------|-----------|-----------|------------|
 | E01 | 21 | 21 | 0 | 100% ✅ |
-| E02 | 39 | 18 | 21 | 46% 🔄 |
+| E02 | 39 | 21 | 18 | 54% 🔄 |
 | E03 | 30 | 0 | 30 | 0% |
 | E04 | 52 | 0 | 52 | 0% |
 | E05 | 50 | 0 | 50 | 0% |
 | E06 | 62 | 0 | 62 | 0% |
 | E07 | ~70 | 0 | ~70 | 0% |
-| **Total** | **~324** | **39** | **~285** | **12%** |
+| **Total** | **~324** | **42** | **~282** | **13%** |
 
 ### Velocity Tracking
 
@@ -252,7 +252,7 @@ Detaillierte Stories werden nach MVP erstellt.
 ### Milestone 1: MVP Foundation (E01 + E02 + E03)
 **Target Date**: TBD
 **Status**: 🔄 In Progress
-**Progress**: 43% (39/90 Story Points)
+**Progress**: 47% (42/90 Story Points)
 
 **Included Stories**:
 - ✅ All E01 stories (Project Setup) - DONE
