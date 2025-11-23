@@ -9,9 +9,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,36 +38,60 @@ import com.gifttrack.feature.orders.viewmodel.OrdersViewModel
  * - Empty: Shows empty state message
  * - Success: Shows list of orders in LazyColumn
  * - Error: Shows error message with retry button
+ *
+ * @param onNavigateToAddOrder Callback when user wants to add a new order.
+ * @param modifier Modifier for the screen.
+ * @param viewModel ViewModel for managing orders state.
  */
 @Composable
 fun OrdersScreen(
+    onNavigateToAddOrder: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: OrdersViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Box(modifier = modifier.fillMaxSize()) {
-        when (val state = uiState) {
-            is OrdersUiState.Loading -> {
-                LoadingState()
-            }
-
-            is OrdersUiState.Empty -> {
-                EmptyState()
-            }
-
-            is OrdersUiState.Success -> {
-                SuccessState(
-                    orders = state.orders,
-                    onOrderClick = { /* TODO: Navigate to order details */ }
+    Scaffold(
+        modifier = modifier,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onNavigateToAddOrder,
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Bestellung hinzufügen"
                 )
             }
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            when (val state = uiState) {
+                is OrdersUiState.Loading -> {
+                    LoadingState()
+                }
 
-            is OrdersUiState.Error -> {
-                ErrorState(
-                    message = state.message,
-                    onRetry = { viewModel.refresh() }
-                )
+                is OrdersUiState.Empty -> {
+                    EmptyState()
+                }
+
+                is OrdersUiState.Success -> {
+                    SuccessState(
+                        orders = state.orders,
+                        onOrderClick = { /* TODO: Navigate to order details */ }
+                    )
+                }
+
+                is OrdersUiState.Error -> {
+                    ErrorState(
+                        message = state.message,
+                        onRetry = { viewModel.refresh() }
+                    )
+                }
             }
         }
     }

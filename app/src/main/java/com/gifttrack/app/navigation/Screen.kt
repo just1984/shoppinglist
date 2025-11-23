@@ -27,6 +27,11 @@ sealed class Screen(val route: String) {
      */
     object Settings : Screen("settings")
 
+    /**
+     * Add Order screen - form for manually adding a new order.
+     */
+    object AddOrder : Screen("add_order")
+
     companion object {
         /**
          * All main navigation destinations.

@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.gifttrack.feature.orders.ui.AddOrderScreen
 import com.gifttrack.feature.orders.ui.OrdersScreen
 import com.gifttrack.feature.recipients.ui.RecipientsScreen
 import com.gifttrack.feature.settings.ui.SettingsScreen
@@ -29,7 +30,20 @@ fun GiftTrackNavHost(
     ) {
         // Orders Screen
         composable(route = Screen.Orders.route) {
-            OrdersScreen()
+            OrdersScreen(
+                onNavigateToAddOrder = {
+                    navController.navigate(Screen.AddOrder.route)
+                }
+            )
+        }
+
+        // Add Order Screen
+        composable(route = Screen.AddOrder.route) {
+            AddOrderScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
 
         // Recipients Screen
