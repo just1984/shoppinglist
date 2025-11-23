@@ -2,7 +2,7 @@
 
 **Project**: GiftTrack Android App
 **Last Updated**: 2025-11-23
-**Status**: Planning Phase
+**Status**: Development Phase - Sprint 2
 
 ---
 
@@ -11,74 +11,95 @@
 | Phase | Status | Progress |
 |-------|--------|----------|
 | **Planning** | ✅ Completed | 100% |
-| **Setup & Infrastructure** | ⏸️ Not Started | 0% |
-| **MVP Development** | ⏸️ Not Started | 0% |
+| **Setup & Infrastructure** | ✅ Completed | 100% |
+| **MVP Development** | 🔄 In Progress | 15% |
 | **Testing & QA** | ⏸️ Not Started | 0% |
 | **Release** | ⏸️ Not Started | 0% |
 
-**Overall Project Completion**: 5% (Planning done)
+**Overall Project Completion**: 20% (Setup + Database + Full CRUD for Orders complete)
 
 ---
 
 ## 🎯 Sprint Overview
 
-### Current Sprint: Planning
-**Sprint Goal**: Complete project planning and documentation
+### Sprint 1: Project Setup ✅ COMPLETED
+**Sprint Goal**: Complete project setup and basic infrastructure
 **Start Date**: 2025-11-23
 **End Date**: 2025-11-23
 **Status**: ✅ Completed
+**Velocity**: 21 Story Points
 
 **Sprint Summary**:
-- ✅ PRD created
-- ✅ Tech Stack defined
-- ✅ Epics created (7 Epics)
-- ✅ Initial User Stories created (5 Stories)
-- ✅ Progress tracking setup
+- ✅ Android Project mit Kotlin & Jetpack Compose
+- ✅ Clean Architecture mit 10 Modulen
+- ✅ Hilt Dependency Injection
+- ✅ Jetpack Compose Navigation
+- ✅ CI/CD Pipeline (GitHub Actions)
+- ✅ Code Quality Tools (ktlint & detekt)
 
-### Next Sprint: Sprint 1 (Setup)
-**Sprint Goal**: Project setup and basic infrastructure
+**Completed Stories**: US-001, US-002, US-003, US-004, US-005, US-006
+
+### Sprint 2: Database & Basic UI ✅ COMPLETED
+**Sprint Goal**: Implement database layer and basic orders UI
+**Start Date**: 2025-11-23
+**End Date**: 2025-11-23
+**Status**: ✅ Completed
+**Velocity**: 13 Story Points
+
+**Sprint Summary**:
+- ✅ Room Database Schema v2 (4 entities, 4 DAOs)
+- ✅ Domain Models & Mappers (Order, Recipient, Shop, TrackingEvent)
+- ✅ Repository Pattern (4 repositories fully implemented)
+- ✅ OrdersViewModel with StateFlow
+- ✅ OrdersScreen UI mit allen States (Loading, Empty, Success, Error)
+- ✅ OrderCard Composable mit Material 3 Design
+
+**Completed Stories**: US-010, US-011, US-012
+
+### Current Sprint: Sprint 3 (TBD)
+**Sprint Goal**: TBD
 **Planned Start**: TBD
-**Planned Stories**: US-001, US-002, US-003, US-004, US-005, US-006
+**Status**: ⏸️ Not Started
 
 ---
 
 ## 📦 Epic Progress
 
 ### E01: Projekt-Setup & Infrastruktur
-**Priority**: Critical | **Status**: Not Started | **Progress**: 0/6 Stories
+**Priority**: Critical | **Status**: ✅ Completed | **Progress**: 6/6 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
-| US-001 | Android Projekt mit Kotlin & Compose erstellen | ⏸️ Not Started | Critical | 3 |
-| US-002 | Clean Architecture Module einrichten | ⏸️ Not Started | Critical | 5 |
-| US-003 | Dependency Injection mit Hilt konfigurieren | ⏸️ Not Started | Critical | 3 |
-| US-004 | Navigation Setup implementieren | ⏸️ Not Started | High | 2 |
-| US-005 | CI/CD Pipeline einrichten | ⏸️ Not Started | Medium | 5 |
-| US-006 | Code Quality Tools integrieren | ⏸️ Not Started | Medium | 3 |
+| US-001 | Android Projekt mit Kotlin & Compose erstellen | ✅ Completed | Critical | 3 |
+| US-002 | Clean Architecture Module einrichten | ✅ Completed | Critical | 5 |
+| US-003 | Dependency Injection mit Hilt konfigurieren | ✅ Completed | Critical | 3 |
+| US-004 | Navigation Setup implementieren | ✅ Completed | High | 2 |
+| US-005 | CI/CD Pipeline einrichten | ✅ Completed | Medium | 5 |
+| US-006 | Code Quality Tools integrieren | ✅ Completed | Medium | 3 |
 
-**Story Points**: 0/21 completed
+**Story Points**: 21/21 completed (100%)
 
 ---
 
 ### E02: Bestellverwaltung
-**Priority**: High | **Status**: Not Started | **Progress**: 0/12 Stories
+**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 6/12 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
-| US-010 | Room Database Schema definieren | ⏸️ Not Started | High | 5 |
-| US-011 | Repository Pattern für Bestellungen implementieren | ⏸️ Not Started | High | 3 |
-| US-012 | Bestellungsübersicht UI erstellen | ⏸️ Not Started | High | 5 |
-| US-013 | Bestellung manuell hinzufügen | ⏸️ Not Started | High | 5 |
-| US-014 | Bestellungsdetails anzeigen | ⏸️ Not Started | High | 3 |
-| US-015 | Bestellung bearbeiten | ⏸️ Not Started | Medium | 3 |
-| US-016 | Bestellung löschen | ⏸️ Not Started | Medium | 2 |
+| US-010 | Room Database Schema definieren | ✅ Completed | High | 5 |
+| US-011 | Repository Pattern für Bestellungen implementieren | ✅ Completed | High | 3 |
+| US-012 | Bestellungsübersicht UI erstellen | ✅ Completed | High | 5 |
+| US-013 | Bestellung manuell hinzufügen | ✅ Completed | High | 5 |
+| US-014 | Bestellungsdetails anzeigen | ✅ Completed | High | 3 |
+| US-015 | Bestellung bearbeiten | ✅ Completed | Medium | 3 |
+| US-016 | Bestellung löschen | ✅ Completed | Medium | 2 |
 | US-017 | Produktbilder hochladen und speichern | ⏸️ Not Started | Medium | 3 |
 | US-018 | Shop-Verwaltung implementieren | ⏸️ Not Started | Medium | 3 |
 | US-019 | Filter- und Sortieroptionen | ⏸️ Not Started | Medium | 3 |
 | US-020 | Suchfunktion implementieren | ⏸️ Not Started | Low | 2 |
 | US-021 | Bestellstatus verwalten | ⏸️ Not Started | Medium | 2 |
 
-**Story Points**: 0/39 completed
+**Story Points**: 26/39 completed (67%)
 
 ---
 
@@ -205,23 +226,24 @@ Detaillierte Stories werden nach MVP erstellt.
 
 | Epic | Total Points | Completed | Remaining | % Complete |
 |------|--------------|-----------|-----------|------------|
-| E01 | 21 | 0 | 21 | 0% |
-| E02 | 39 | 0 | 39 | 0% |
+| E01 | 21 | 21 | 0 | 100% ✅ |
+| E02 | 39 | 26 | 13 | 67% 🔄 |
 | E03 | 30 | 0 | 30 | 0% |
 | E04 | 52 | 0 | 52 | 0% |
 | E05 | 50 | 0 | 50 | 0% |
 | E06 | 62 | 0 | 62 | 0% |
 | E07 | ~70 | 0 | ~70 | 0% |
-| **Total** | **~324** | **0** | **~324** | **0%** |
+| **Total** | **~324** | **47** | **~277** | **15%** |
 
 ### Velocity Tracking
 
 | Sprint | Planned Points | Completed Points | Velocity |
 |--------|----------------|------------------|----------|
 | Planning | - | - | - |
-| Sprint 1 | TBD | - | - |
+| Sprint 1 | 21 | 21 | 21 ✅ |
+| Sprint 2 | 13 | 13 | 13 ✅ |
 
-**Average Velocity**: TBD (will be calculated after first sprint)
+**Average Velocity**: 17 Story Points/Sprint (based on Sprint 1 & 2)
 
 ---
 
@@ -229,20 +251,20 @@ Detaillierte Stories werden nach MVP erstellt.
 
 ### Milestone 1: MVP Foundation (E01 + E02 + E03)
 **Target Date**: TBD
-**Status**: Not Started
-**Progress**: 0%
+**Status**: 🔄 In Progress
+**Progress**: 52% (47/90 Story Points)
 
 **Included Stories**:
-- All E01 stories (Project Setup)
-- All E02 stories (Order Management)
-- All E03 stories (Recipient Management)
+- ✅ All E01 stories (Project Setup) - DONE
+- 🔄 All E02 stories (Order Management) - IN PROGRESS
+- ⏸️ All E03 stories (Recipient Management) - PENDING
 
 **Success Criteria**:
-- [ ] App runs on Android device
-- [ ] Users can add orders manually
+- [x] App runs on Android device
+- [x] Users can add orders manually
 - [ ] Users can assign products to recipients
-- [ ] Data is stored locally
-- [ ] Basic UI is functional
+- [x] Data is stored locally
+- [x] Basic UI is functional
 
 ---
 
@@ -360,9 +382,10 @@ Detaillierte Stories werden nach MVP erstellt.
 ## 📅 Timeline
 
 ```
-Planning Phase          ███████████████████ 100% (DONE)
-Sprint 1 (Setup)        ░░░░░░░░░░░░░░░░░░░   0%
-Sprint 2-3 (Orders)     ░░░░░░░░░░░░░░░░░░░   0%
+Planning Phase          ███████████████████ 100% ✅ DONE
+Sprint 1 (Setup)        ███████████████████ 100% ✅ DONE
+Sprint 2 (Database+UI)  ███████████████████ 100% ✅ DONE
+Sprint 3 (Orders CRUD)  ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 4 (Recipients)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 5-6 (Tracking)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 7 (Auth)         ░░░░░░░░░░░░░░░░░░░   0%
