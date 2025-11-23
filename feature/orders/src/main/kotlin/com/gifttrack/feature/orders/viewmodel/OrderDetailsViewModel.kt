@@ -63,4 +63,29 @@ class OrderDetailsViewModel @Inject constructor(
         _uiState.value = OrderDetailsUiState.Loading
         loadOrderDetails()
     }
+
+    /**
+     * Deletes the current order.
+     */
+    fun deleteOrder() {
+        _uiState.value = OrderDetailsUiState.Deleting
+
+        viewModelScope.launch {
+            try {
+                orderRepository.deleteOrder(orderId)
+                _uiState.value = OrderDetailsUiState.Deleted
+            } catch (e: Exception) {
+                _uiState.value = OrderDetailsUiState.Error(
+                    message = e.message ?: "Fehler beim Löschen der Bestellung"
+                )
+            }
+        }
+    }
+
+    /**
+     * Resets the UI state to the current loaded order after an error.
+     */
+    fun resetUiState() {
+        loadOrderDetails()
+    }
 }

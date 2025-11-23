@@ -21,6 +21,16 @@ sealed class OrderDetailsUiState {
     data class Success(val order: Order) : OrderDetailsUiState()
 
     /**
+     * Deleting state - order is being deleted.
+     */
+    data object Deleting : OrderDetailsUiState()
+
+    /**
+     * Deleted state - order was deleted successfully.
+     */
+    data object Deleted : OrderDetailsUiState()
+
+    /**
      * Error state - order not found or error occurred.
      *
      * @param message Error message to display.

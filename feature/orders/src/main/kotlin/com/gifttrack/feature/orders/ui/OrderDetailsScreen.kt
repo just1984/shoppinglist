@@ -11,7 +11,9 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -23,10 +25,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -58,6 +68,37 @@ fun OrderDetailsScreen(
     viewModel: OrderDetailsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Handle deletion success and errors
+    LaunchedEffect(uiState) {
+        when (uiState) {
+            is OrderDetailsUiState.Deleted -> {
+                snackbarHostState.showSnackbar("Bestellung gelöscht")
+                onNavigateBack()
+            }
+            is OrderDetailsUiState.Error -> {
+                val errorMessage = (uiState as OrderDetailsUiState.Error).message
+                snackbarHostState.showSnackbar(errorMessage)
+                viewModel.resetUiState()
+            }
+            else -> Unit
+        }
+    }
+
+    // Delete confirmation dialog
+    if (showDeleteDialog) {
+        DeleteConfirmationDialog(
+            onConfirm = {
+                showDeleteDialog = false
+                viewModel.deleteOrder()
+            },
+            onDismiss = {
+                showDeleteDialog = false
+            }
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -69,6 +110,17 @@ fun OrderDetailsScreen(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Zurück"
                         )
+                    }
+                },
+                actions = {
+                    if (uiState is OrderDetailsUiState.Success) {
+                        IconButton(onClick = { showDeleteDialog = true }) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                contentDescription = "Bestellung löschen",
+                                tint = MaterialTheme.colorScheme.error
+                            )
+                        }
                     }
                 }
             )
@@ -85,7 +137,8 @@ fun OrderDetailsScreen(
                     )
                 }
             }
-        }
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         Box(
             modifier = modifier
@@ -94,6 +147,10 @@ fun OrderDetailsScreen(
         ) {
             when (val state = uiState) {
                 is OrderDetailsUiState.Loading -> {
+                    LoadingState()
+                }
+
+                is OrderDetailsUiState.Deleting -> {
                     LoadingState()
                 }
 
@@ -109,6 +166,10 @@ fun OrderDetailsScreen(
                         message = state.message,
                         onRetry = { viewModel.refresh() }
                     )
+                }
+
+                is OrderDetailsUiState.Deleted -> {
+                    // Navigation is handled in LaunchedEffect
                 }
             }
         }
@@ -409,4 +470,44 @@ private fun getStatusColor(status: OrderStatus) = when (status) {
         MaterialTheme.colorScheme.primary
     OrderStatus.DELIVERED -> MaterialTheme.colorScheme.tertiary
     OrderStatus.CANCELLED, OrderStatus.RETURNED -> MaterialTheme.colorScheme.error
+}
+
+/**
+ * Dialog for confirming order deletion.
+ */
+@Composable
+private fun DeleteConfirmationDialog(
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "Bestellung löschen?",
+                style = MaterialTheme.typography.titleLarge
+            )
+        },
+        text = {
+            Text(
+                text = "Möchten Sie diese Bestellung wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+                style = MaterialTheme.typography.bodyMedium
+            )
+        },
+        confirmButton = {
+            TextButton(
+                onClick = onConfirm
+            ) {
+                Text(
+                    text = "Löschen",
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Abbrechen")
+            }
+        }
+    )
 }
