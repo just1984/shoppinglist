@@ -37,6 +37,7 @@ data class AddOrderFormState(
     val shopName: String = "",
     val productName: String = "",
     val productDescription: String = "",
+    val productImageUrl: String = "",
     val totalAmount: String = "",
     val currency: String = "EUR",
     val carrierName: String = "",

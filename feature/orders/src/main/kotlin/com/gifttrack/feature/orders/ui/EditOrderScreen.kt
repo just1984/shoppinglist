@@ -109,6 +109,7 @@ fun EditOrderScreen(
                         onShopNameChange = viewModel::updateShopName,
                         onProductNameChange = viewModel::updateProductName,
                         onProductDescriptionChange = viewModel::updateProductDescription,
+                        onProductImageUrlChange = viewModel::updateProductImageUrl,
                         onTotalAmountChange = viewModel::updateTotalAmount,
                         onCurrencyChange = viewModel::updateCurrency,
                         onCarrierNameChange = viewModel::updateCarrierName,
@@ -134,6 +135,7 @@ private fun EditOrderForm(
     onShopNameChange: (String) -> Unit,
     onProductNameChange: (String) -> Unit,
     onProductDescriptionChange: (String) -> Unit,
+    onProductImageUrlChange: (String) -> Unit,
     onTotalAmountChange: (String) -> Unit,
     onCurrencyChange: (String) -> Unit,
     onCarrierNameChange: (String) -> Unit,
@@ -197,6 +199,14 @@ private fun EditOrderForm(
             modifier = Modifier.fillMaxWidth(),
             minLines = 3,
             maxLines = 5
+        )
+
+        OutlinedTextField(
+            value = formState.productImageUrl,
+            onValueChange = onProductImageUrlChange,
+            label = { Text("Produktbild-URL") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
         )
 
         // Price section

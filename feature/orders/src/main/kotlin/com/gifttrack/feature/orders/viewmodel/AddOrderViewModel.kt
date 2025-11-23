@@ -66,6 +66,13 @@ class AddOrderViewModel @Inject constructor(
     }
 
     /**
+     * Updates the product image URL field.
+     */
+    fun updateProductImageUrl(value: String) {
+        _formState.value = _formState.value.copy(productImageUrl = value)
+    }
+
+    /**
      * Updates the total amount field.
      */
     fun updateTotalAmount(value: String) {
@@ -163,7 +170,7 @@ class AddOrderViewModel @Inject constructor(
                     recipientId = null,
                     recipientName = null,
                     productUrl = null,
-                    productImageUrl = null,
+                    productImageUrl = currentForm.productImageUrl.ifBlank { null },
                     notes = null,
                     isGift = currentForm.isGift,
                     isHidden = false,

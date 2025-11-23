@@ -55,6 +55,7 @@ class EditOrderViewModel @Inject constructor(
                         shopName = order.shopName,
                         productName = order.productName ?: "",
                         productDescription = order.productDescription ?: "",
+                        productImageUrl = order.productImageUrl ?: "",
                         totalAmount = order.totalAmount?.toString() ?: "",
                         currency = order.currency,
                         carrierName = order.carrierName ?: "",
@@ -107,6 +108,13 @@ class EditOrderViewModel @Inject constructor(
      */
     fun updateProductDescription(value: String) {
         _formState.value = _formState.value.copy(productDescription = value)
+    }
+
+    /**
+     * Updates the product image URL field.
+     */
+    fun updateProductImageUrl(value: String) {
+        _formState.value = _formState.value.copy(productImageUrl = value)
     }
 
     /**
@@ -201,6 +209,7 @@ class EditOrderViewModel @Inject constructor(
                     shopName = currentForm.shopName,
                     productName = currentForm.productName.ifBlank { null },
                     productDescription = currentForm.productDescription.ifBlank { null },
+                    productImageUrl = currentForm.productImageUrl.ifBlank { null },
                     totalAmount = currentForm.totalAmount.toDoubleOrNull(),
                     currency = currentForm.currency,
                     carrierName = currentForm.carrierName.ifBlank { null },

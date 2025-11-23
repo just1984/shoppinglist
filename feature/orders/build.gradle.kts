@@ -60,6 +60,9 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
+    // Image Loading
+    implementation(libs.coil.compose)
+
     // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)
 }
