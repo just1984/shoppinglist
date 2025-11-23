@@ -40,12 +40,14 @@ import com.gifttrack.feature.orders.viewmodel.OrdersViewModel
  * - Error: Shows error message with retry button
  *
  * @param onNavigateToAddOrder Callback when user wants to add a new order.
+ * @param onNavigateToOrderDetails Callback when user clicks on an order card.
  * @param modifier Modifier for the screen.
  * @param viewModel ViewModel for managing orders state.
  */
 @Composable
 fun OrdersScreen(
     onNavigateToAddOrder: () -> Unit,
+    onNavigateToOrderDetails: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: OrdersViewModel = hiltViewModel()
 ) {
@@ -82,7 +84,7 @@ fun OrdersScreen(
                 is OrdersUiState.Success -> {
                     SuccessState(
                         orders = state.orders,
-                        onOrderClick = { /* TODO: Navigate to order details */ }
+                        onOrderClick = onNavigateToOrderDetails
                     )
                 }
 

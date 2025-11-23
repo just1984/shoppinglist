@@ -32,6 +32,16 @@ sealed class Screen(val route: String) {
      */
     object AddOrder : Screen("add_order")
 
+    /**
+     * Order Details screen - shows detailed information about a specific order.
+     */
+    object OrderDetails : Screen("order_details/{orderId}") {
+        /**
+         * Creates a route for navigating to order details with the given order ID.
+         */
+        fun createRoute(orderId: String) = "order_details/$orderId"
+    }
+
     companion object {
         /**
          * All main navigation destinations.

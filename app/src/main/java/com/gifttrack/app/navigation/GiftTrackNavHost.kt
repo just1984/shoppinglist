@@ -3,9 +3,12 @@ package com.gifttrack.app.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.gifttrack.feature.orders.ui.AddOrderScreen
+import com.gifttrack.feature.orders.ui.OrderDetailsScreen
 import com.gifttrack.feature.orders.ui.OrdersScreen
 import com.gifttrack.feature.recipients.ui.RecipientsScreen
 import com.gifttrack.feature.settings.ui.SettingsScreen
@@ -33,6 +36,9 @@ fun GiftTrackNavHost(
             OrdersScreen(
                 onNavigateToAddOrder = {
                     navController.navigate(Screen.AddOrder.route)
+                },
+                onNavigateToOrderDetails = { orderId ->
+                    navController.navigate(Screen.OrderDetails.createRoute(orderId))
                 }
             )
         }
@@ -40,6 +46,22 @@ fun GiftTrackNavHost(
         // Add Order Screen
         composable(route = Screen.AddOrder.route) {
             AddOrderScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // Order Details Screen
+        composable(
+            route = Screen.OrderDetails.route,
+            arguments = listOf(
+                navArgument("orderId") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            OrderDetailsScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }
