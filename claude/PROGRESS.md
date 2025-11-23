@@ -12,11 +12,11 @@
 |-------|--------|----------|
 | **Planning** | ✅ Completed | 100% |
 | **Setup & Infrastructure** | ✅ Completed | 100% |
-| **MVP Development** | 🔄 In Progress | 10% |
+| **MVP Development** | 🔄 In Progress | 15% |
 | **Testing & QA** | ⏸️ Not Started | 0% |
 | **Release** | ⏸️ Not Started | 0% |
 
-**Overall Project Completion**: 12% (Setup complete, starting features)
+**Overall Project Completion**: 16% (Setup + Database + Basic UI complete)
 
 ---
 
@@ -39,13 +39,27 @@
 
 **Completed Stories**: US-001, US-002, US-003, US-004, US-005, US-006
 
-### Current Sprint: Sprint 2 (Database & Basic UI)
+### Sprint 2: Database & Basic UI ✅ COMPLETED
 **Sprint Goal**: Implement database layer and basic orders UI
 **Start Date**: 2025-11-23
-**Planned End**: TBD
-**Status**: 🔄 In Progress
-**Planned Stories**: US-010, US-011, US-012
-**Target Story Points**: 13
+**End Date**: 2025-11-23
+**Status**: ✅ Completed
+**Velocity**: 13 Story Points
+
+**Sprint Summary**:
+- ✅ Room Database Schema v2 (4 entities, 4 DAOs)
+- ✅ Domain Models & Mappers (Order, Recipient, Shop, TrackingEvent)
+- ✅ Repository Pattern (4 repositories fully implemented)
+- ✅ OrdersViewModel with StateFlow
+- ✅ OrdersScreen UI mit allen States (Loading, Empty, Success, Error)
+- ✅ OrderCard Composable mit Material 3 Design
+
+**Completed Stories**: US-010, US-011, US-012
+
+### Current Sprint: Sprint 3 (TBD)
+**Sprint Goal**: TBD
+**Planned Start**: TBD
+**Status**: ⏸️ Not Started
 
 ---
 
@@ -68,13 +82,13 @@
 ---
 
 ### E02: Bestellverwaltung
-**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 0/12 Stories
+**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 3/12 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
-| US-010 | Room Database Schema definieren | 🔄 In Progress | High | 5 |
-| US-011 | Repository Pattern für Bestellungen implementieren | ⏸️ Not Started | High | 3 |
-| US-012 | Bestellungsübersicht UI erstellen | ⏸️ Not Started | High | 5 |
+| US-010 | Room Database Schema definieren | ✅ Completed | High | 5 |
+| US-011 | Repository Pattern für Bestellungen implementieren | ✅ Completed | High | 3 |
+| US-012 | Bestellungsübersicht UI erstellen | ✅ Completed | High | 5 |
 | US-013 | Bestellung manuell hinzufügen | ⏸️ Not Started | High | 5 |
 | US-014 | Bestellungsdetails anzeigen | ⏸️ Not Started | High | 3 |
 | US-015 | Bestellung bearbeiten | ⏸️ Not Started | Medium | 3 |
@@ -85,7 +99,7 @@
 | US-020 | Suchfunktion implementieren | ⏸️ Not Started | Low | 2 |
 | US-021 | Bestellstatus verwalten | ⏸️ Not Started | Medium | 2 |
 
-**Story Points**: 0/39 completed
+**Story Points**: 13/39 completed (33%)
 
 ---
 
@@ -213,13 +227,13 @@ Detaillierte Stories werden nach MVP erstellt.
 | Epic | Total Points | Completed | Remaining | % Complete |
 |------|--------------|-----------|-----------|------------|
 | E01 | 21 | 21 | 0 | 100% ✅ |
-| E02 | 39 | 0 | 39 | 0% 🔄 |
+| E02 | 39 | 13 | 26 | 33% 🔄 |
 | E03 | 30 | 0 | 30 | 0% |
 | E04 | 52 | 0 | 52 | 0% |
 | E05 | 50 | 0 | 50 | 0% |
 | E06 | 62 | 0 | 62 | 0% |
 | E07 | ~70 | 0 | ~70 | 0% |
-| **Total** | **~324** | **21** | **~303** | **6.5%** |
+| **Total** | **~324** | **34** | **~290** | **10.5%** |
 
 ### Velocity Tracking
 
@@ -227,9 +241,9 @@ Detaillierte Stories werden nach MVP erstellt.
 |--------|----------------|------------------|----------|
 | Planning | - | - | - |
 | Sprint 1 | 21 | 21 | 21 ✅ |
-| Sprint 2 | 13 | 0 | TBD 🔄 |
+| Sprint 2 | 13 | 13 | 13 ✅ |
 
-**Average Velocity**: 21 Story Points/Sprint (based on Sprint 1)
+**Average Velocity**: 17 Story Points/Sprint (based on Sprint 1 & 2)
 
 ---
 
@@ -238,7 +252,7 @@ Detaillierte Stories werden nach MVP erstellt.
 ### Milestone 1: MVP Foundation (E01 + E02 + E03)
 **Target Date**: TBD
 **Status**: 🔄 In Progress
-**Progress**: 23% (21/90 Story Points)
+**Progress**: 38% (34/90 Story Points)
 
 **Included Stories**:
 - ✅ All E01 stories (Project Setup) - DONE
@@ -370,8 +384,8 @@ Detaillierte Stories werden nach MVP erstellt.
 ```
 Planning Phase          ███████████████████ 100% ✅ DONE
 Sprint 1 (Setup)        ███████████████████ 100% ✅ DONE
-Sprint 2 (Database)     ████░░░░░░░░░░░░░░░  20% 🔄 IN PROGRESS
-Sprint 3 (Orders)       ░░░░░░░░░░░░░░░░░░░   0%
+Sprint 2 (Database+UI)  ███████████████████ 100% ✅ DONE
+Sprint 3 (Orders CRUD)  ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 4 (Recipients)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 5-6 (Tracking)   ░░░░░░░░░░░░░░░░░░░   0%
 Sprint 7 (Auth)         ░░░░░░░░░░░░░░░░░░░   0%
