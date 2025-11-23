@@ -72,6 +72,7 @@ android {
 dependencies {
     // Feature Modules
     implementation(project(":feature:orders"))
+    implementation(project(":feature:shops"))
     implementation(project(":feature:recipients"))
     implementation(project(":feature:tracking"))
     implementation(project(":feature:settings"))

@@ -13,6 +13,10 @@ import com.gifttrack.feature.orders.ui.OrderDetailsScreen
 import com.gifttrack.feature.orders.ui.OrdersScreen
 import com.gifttrack.feature.recipients.ui.RecipientsScreen
 import com.gifttrack.feature.settings.ui.SettingsScreen
+import com.gifttrack.feature.shops.ui.AddShopScreen
+import com.gifttrack.feature.shops.ui.EditShopScreen
+import com.gifttrack.feature.shops.ui.ShopDetailsScreen
+import com.gifttrack.feature.shops.ui.ShopsScreen
 import com.gifttrack.feature.tracking.ui.TrackingScreen
 
 /**
@@ -83,6 +87,63 @@ fun GiftTrackNavHost(
             )
         ) {
             EditOrderScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // Shops Screen
+        composable(route = Screen.Shops.route) {
+            ShopsScreen(
+                onNavigateToShopDetails = { shopId ->
+                    navController.navigate(Screen.ShopDetails.createRoute(shopId))
+                },
+                onNavigateToAddShop = {
+                    navController.navigate(Screen.AddShop.route)
+                }
+            )
+        }
+
+        // Add Shop Screen
+        composable(route = Screen.AddShop.route) {
+            AddShopScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // Shop Details Screen
+        composable(
+            route = Screen.ShopDetails.route,
+            arguments = listOf(
+                navArgument("shopId") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val shopId = backStackEntry.arguments?.getString("shopId") ?: return@composable
+            ShopDetailsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToEdit = {
+                    navController.navigate(Screen.EditShop.createRoute(shopId))
+                }
+            )
+        }
+
+        // Edit Shop Screen
+        composable(
+            route = Screen.EditShop.route,
+            arguments = listOf(
+                navArgument("shopId") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            EditShopScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }

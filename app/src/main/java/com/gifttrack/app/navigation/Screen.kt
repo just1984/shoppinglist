@@ -52,6 +52,36 @@ sealed class Screen(val route: String) {
         fun createRoute(orderId: String) = "edit_order/$orderId"
     }
 
+    /**
+     * Shops screen - shows list of all shops.
+     */
+    object Shops : Screen("shops")
+
+    /**
+     * Add Shop screen - form for adding a new shop.
+     */
+    object AddShop : Screen("add_shop")
+
+    /**
+     * Shop Details screen - shows detailed information about a specific shop.
+     */
+    object ShopDetails : Screen("shop_details/{shopId}") {
+        /**
+         * Creates a route for navigating to shop details with the given shop ID.
+         */
+        fun createRoute(shopId: String) = "shop_details/$shopId"
+    }
+
+    /**
+     * Edit Shop screen - form for editing an existing shop.
+     */
+    object EditShop : Screen("edit_shop/{shopId}") {
+        /**
+         * Creates a route for navigating to edit shop with the given shop ID.
+         */
+        fun createRoute(shopId: String) = "edit_shop/$shopId"
+    }
+
     companion object {
         /**
          * All main navigation destinations.

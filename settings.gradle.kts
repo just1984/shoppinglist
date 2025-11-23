@@ -28,6 +28,7 @@ include(":core:ui")
 
 // Feature modules
 include(":feature:orders")
+include(":feature:shops")
 include(":feature:recipients")
 include(":feature:tracking")
 include(":feature:settings")
