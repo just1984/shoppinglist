@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.gifttrack.core.database.GiftTrackDatabase
 import com.gifttrack.core.database.dao.OrderDao
 import com.gifttrack.core.database.dao.RecipientDao
+import com.gifttrack.core.database.dao.ShopDao
+import com.gifttrack.core.database.dao.TrackingEventDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,7 +31,7 @@ object DatabaseModule {
             GiftTrackDatabase::class.java,
             "gifttrack.db"
         )
-            .fallbackToDestructiveMigration() // For development only
+            .fallbackToDestructiveMigration() // For development only - TODO: Add proper migrations for production
             .build()
     }
 
@@ -43,5 +45,17 @@ object DatabaseModule {
     @Singleton
     fun provideRecipientDao(database: GiftTrackDatabase): RecipientDao {
         return database.recipientDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideShopDao(database: GiftTrackDatabase): ShopDao {
+        return database.shopDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrackingEventDao(database: GiftTrackDatabase): TrackingEventDao {
+        return database.trackingEventDao()
     }
 }

@@ -16,14 +16,26 @@ interface OrderDao {
      * Observes all orders.
      * @return Flow of all orders that emits on every database change.
      */
-    @Query("SELECT * FROM orders ORDER BY orderDate DESC")
+    @Query("SELECT * FROM orders ORDER BY order_date DESC")
     fun getOrders(): Flow<List<OrderEntity>>
 
     /**
      * Observes orders filtered by recipient.
      */
-    @Query("SELECT * FROM orders WHERE recipientId = :recipientId ORDER BY orderDate DESC")
+    @Query("SELECT * FROM orders WHERE recipient_id = :recipientId ORDER BY order_date DESC")
     fun getOrdersByRecipient(recipientId: String): Flow<List<OrderEntity>>
+
+    /**
+     * Observes orders filtered by shop.
+     */
+    @Query("SELECT * FROM orders WHERE shop_id = :shopId ORDER BY order_date DESC")
+    fun getOrdersByShop(shopId: String): Flow<List<OrderEntity>>
+
+    /**
+     * Observes orders filtered by status.
+     */
+    @Query("SELECT * FROM orders WHERE status = :status ORDER BY order_date DESC")
+    fun getOrdersByStatus(status: String): Flow<List<OrderEntity>>
 
     /**
      * Gets a single order by ID.
