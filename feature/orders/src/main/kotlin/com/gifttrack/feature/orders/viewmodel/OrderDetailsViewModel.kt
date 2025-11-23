@@ -3,6 +3,7 @@ package com.gifttrack.feature.orders.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gifttrack.core.domain.model.OrderStatus
 import com.gifttrack.core.domain.repository.OrderRepository
 import com.gifttrack.feature.orders.ui.OrderDetailsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,6 +63,31 @@ class OrderDetailsViewModel @Inject constructor(
     fun refresh() {
         _uiState.value = OrderDetailsUiState.Loading
         loadOrderDetails()
+    }
+
+    /**
+     * Updates the order status.
+     */
+    fun updateOrderStatus(newStatus: OrderStatus) {
+        val currentState = _uiState.value
+        if (currentState !is OrderDetailsUiState.Success) {
+            return
+        }
+
+        viewModelScope.launch {
+            try {
+                val updatedOrder = currentState.order.copy(
+                    status = newStatus,
+                    updatedAt = System.currentTimeMillis()
+                )
+                orderRepository.updateOrder(updatedOrder)
+                _uiState.value = OrderDetailsUiState.Success(updatedOrder)
+            } catch (e: Exception) {
+                _uiState.value = OrderDetailsUiState.Error(
+                    message = e.message ?: "Fehler beim Aktualisieren des Status"
+                )
+            }
+        }
     }
 
     /**

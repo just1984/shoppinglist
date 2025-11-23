@@ -50,6 +50,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.gifttrack.core.domain.model.Order
 import com.gifttrack.core.domain.model.OrderStatus
+import com.gifttrack.feature.orders.ui.components.ChangeStatusDialog
 import com.gifttrack.feature.orders.viewmodel.OrderDetailsViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -73,6 +74,7 @@ fun OrderDetailsScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showDeleteDialog by remember { mutableStateOf(false) }
+    var showStatusDialog by remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
 
     // Handle deletion success and errors
@@ -100,6 +102,19 @@ fun OrderDetailsScreen(
             },
             onDismiss = {
                 showDeleteDialog = false
+            }
+        )
+    }
+
+    // Change status dialog
+    if (showStatusDialog && uiState is OrderDetailsUiState.Success) {
+        ChangeStatusDialog(
+            currentStatus = (uiState as OrderDetailsUiState.Success).order.status,
+            onStatusChange = { newStatus ->
+                viewModel.updateOrderStatus(newStatus)
+            },
+            onDismiss = {
+                showStatusDialog = false
             }
         )
     }
@@ -161,6 +176,7 @@ fun OrderDetailsScreen(
                 is OrderDetailsUiState.Success -> {
                     OrderDetailsContent(
                         order = state.order,
+                        onChangeStatus = { showStatusDialog = true },
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -244,6 +260,7 @@ private fun ErrorState(
 @Composable
 private fun OrderDetailsContent(
     order: Order,
+    onChangeStatus: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -253,7 +270,10 @@ private fun OrderDetailsContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // Status Badge
-        OrderStatusCard(order = order)
+        OrderStatusCard(
+            order = order,
+            onChangeStatus = onChangeStatus
+        )
 
         // Basic Information
         InfoSection(title = "Allgemeine Informationen") {
@@ -355,7 +375,10 @@ private fun OrderDetailsContent(
  * Card displaying order status.
  */
 @Composable
-private fun OrderStatusCard(order: Order) {
+private fun OrderStatusCard(
+    order: Order,
+    onChangeStatus: () -> Unit
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -366,7 +389,8 @@ private fun OrderStatusCard(order: Order) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
                 text = getStatusText(order.status),
@@ -374,6 +398,15 @@ private fun OrderStatusCard(order: Order) {
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onPrimary
             )
+            Button(
+                onClick = onChangeStatus,
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.onPrimary,
+                    contentColor = getStatusColor(order.status)
+                )
+            ) {
+                Text("Status ändern")
+            }
         }
     }
 }
