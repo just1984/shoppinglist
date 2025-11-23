@@ -11,6 +11,9 @@ import javax.inject.Inject
 
 /**
  * Implementation of RecipientRepository using Room database.
+ *
+ * This class bridges the domain layer (repository interface)
+ * and the data layer (Room database).
  */
 class RecipientRepositoryImpl @Inject constructor(
     private val recipientDao: RecipientDao
@@ -30,7 +33,19 @@ class RecipientRepositoryImpl @Inject constructor(
         recipientDao.insert(recipient.toEntity())
     }
 
+    override suspend fun insertRecipients(recipients: List<Recipient>) {
+        recipientDao.insertAll(recipients.map { it.toEntity() })
+    }
+
+    override suspend fun updateRecipient(recipient: Recipient) {
+        recipientDao.update(recipient.toEntity())
+    }
+
     override suspend fun deleteRecipient(id: String) {
         recipientDao.deleteById(id)
+    }
+
+    override suspend fun deleteAllRecipients() {
+        recipientDao.deleteAll()
     }
 }

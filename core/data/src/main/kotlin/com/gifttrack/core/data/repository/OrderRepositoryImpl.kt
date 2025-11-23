@@ -32,6 +32,18 @@ class OrderRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getOrdersByShop(shopId: String): Flow<List<Order>> {
+        return orderDao.getOrdersByShop(shopId).map { entities ->
+            entities.map { it.toModel() }
+        }
+    }
+
+    override fun getOrdersByStatus(status: OrderStatus): Flow<List<Order>> {
+        return orderDao.getOrdersByStatus(status.name).map { entities ->
+            entities.map { it.toModel() }
+        }
+    }
+
     override suspend fun getOrderById(id: String): Order? {
         return orderDao.getOrderById(id)?.toModel()
     }
@@ -40,11 +52,19 @@ class OrderRepositoryImpl @Inject constructor(
         orderDao.insert(order.toEntity())
     }
 
+    override suspend fun insertOrders(orders: List<Order>) {
+        orderDao.insertAll(orders.map { it.toEntity() })
+    }
+
     override suspend fun deleteOrder(id: String) {
         orderDao.deleteById(id)
     }
 
     override suspend fun updateOrderStatus(orderId: String, status: OrderStatus) {
         orderDao.updateStatus(orderId, status.name)
+    }
+
+    override suspend fun deleteAllOrders() {
+        orderDao.deleteAll()
     }
 }
