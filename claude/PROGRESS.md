@@ -16,7 +16,7 @@
 | **Testing & QA** | ⏸️ Not Started | 0% |
 | **Release** | ⏸️ Not Started | 0% |
 
-**Overall Project Completion**: 16% (Setup + Database + Basic UI complete)
+**Overall Project Completion**: 17% (Setup + Database + Basic UI + Add Order complete)
 
 ---
 
@@ -82,14 +82,14 @@
 ---
 
 ### E02: Bestellverwaltung
-**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 3/12 Stories
+**Priority**: High | **Status**: 🔄 In Progress | **Progress**: 4/12 Stories
 
 | Story ID | Title | Status | Priority | Points |
 |----------|-------|--------|----------|--------|
 | US-010 | Room Database Schema definieren | ✅ Completed | High | 5 |
 | US-011 | Repository Pattern für Bestellungen implementieren | ✅ Completed | High | 3 |
 | US-012 | Bestellungsübersicht UI erstellen | ✅ Completed | High | 5 |
-| US-013 | Bestellung manuell hinzufügen | ⏸️ Not Started | High | 5 |
+| US-013 | Bestellung manuell hinzufügen | ✅ Completed | High | 5 |
 | US-014 | Bestellungsdetails anzeigen | ⏸️ Not Started | High | 3 |
 | US-015 | Bestellung bearbeiten | ⏸️ Not Started | Medium | 3 |
 | US-016 | Bestellung löschen | ⏸️ Not Started | Medium | 2 |
@@ -99,7 +99,7 @@
 | US-020 | Suchfunktion implementieren | ⏸️ Not Started | Low | 2 |
 | US-021 | Bestellstatus verwalten | ⏸️ Not Started | Medium | 2 |
 
-**Story Points**: 13/39 completed (33%)
+**Story Points**: 18/39 completed (46%)
 
 ---
 
@@ -227,13 +227,13 @@ Detaillierte Stories werden nach MVP erstellt.
 | Epic | Total Points | Completed | Remaining | % Complete |
 |------|--------------|-----------|-----------|------------|
 | E01 | 21 | 21 | 0 | 100% ✅ |
-| E02 | 39 | 13 | 26 | 33% 🔄 |
+| E02 | 39 | 18 | 21 | 46% 🔄 |
 | E03 | 30 | 0 | 30 | 0% |
 | E04 | 52 | 0 | 52 | 0% |
 | E05 | 50 | 0 | 50 | 0% |
 | E06 | 62 | 0 | 62 | 0% |
 | E07 | ~70 | 0 | ~70 | 0% |
-| **Total** | **~324** | **34** | **~290** | **10.5%** |
+| **Total** | **~324** | **39** | **~285** | **12%** |
 
 ### Velocity Tracking
 
@@ -252,7 +252,7 @@ Detaillierte Stories werden nach MVP erstellt.
 ### Milestone 1: MVP Foundation (E01 + E02 + E03)
 **Target Date**: TBD
 **Status**: 🔄 In Progress
-**Progress**: 38% (34/90 Story Points)
+**Progress**: 43% (39/90 Story Points)
 
 **Included Stories**:
 - ✅ All E01 stories (Project Setup) - DONE
@@ -261,10 +261,10 @@ Detaillierte Stories werden nach MVP erstellt.
 
 **Success Criteria**:
 - [x] App runs on Android device
-- [ ] Users can add orders manually
+- [x] Users can add orders manually
 - [ ] Users can assign products to recipients
-- [ ] Data is stored locally
-- [ ] Basic UI is functional
+- [x] Data is stored locally
+- [x] Basic UI is functional
 
 ---
 
