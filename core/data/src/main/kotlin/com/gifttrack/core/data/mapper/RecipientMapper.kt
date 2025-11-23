@@ -12,8 +12,10 @@ fun RecipientEntity.toModel(): Recipient {
         name = name,
         avatarUrl = avatarUrl,
         relationship = relationship,
+        birthday = birthday,
         notes = notes,
-        createdAt = createdAt
+        createdAt = createdAt,
+        updatedAt = updatedAt
     )
 }
 
@@ -26,7 +28,9 @@ fun Recipient.toEntity(): RecipientEntity {
         name = name,
         avatarUrl = avatarUrl,
         relationship = relationship,
+        birthday = birthday,
         notes = notes,
-        createdAt = createdAt
+        createdAt = createdAt,
+        updatedAt = updatedAt
     )
 }
